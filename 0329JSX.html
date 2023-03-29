@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React시작</title>
+    <!--babel.js CDN 링크-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!--React CDN 링크-->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //클래스 형태로 컴포넌트 작성
+        /*
+        class myapp extends Component{
+            render(){
+                return (
+                    <h1>안녕</h1>
+                )
+            }
+        }
+        */
+        //함수형태로 임시 전환-컴포넌트
+        //JSX = HTML파일에 JS를 확장한 문법
+        function Myapp(){
+            //자바스크립트의 요소 사용가능(변수/연산자 등)
+            let name="React";
+            //return을 통해 화면에 출력되는 html 작성
+            return(
+                // 반드시 부모요소는 하나만 있어야 한다.
+                <div>
+                    <h1>JSX로 접근하는 리엑트</h1>
+                    <p>먼저 하나의 태그로 감싸서 전체 내용을 출력합니다. 원하는 대로 html 내용을 작성 할 수 있습니다.</p>
+                    </div>
+            )
+        }
+        //위와 같은 형태가 JSX 형태
+        //html에서 가상돔을 출력할 공간을 가져와서 연결
+        let container=document.querySelector("#root");
+        let root=ReactDOM.createRoot(container);
+        //원하는 html 코드를 화면에 출력
+        //html코드를 가진 컴포넌트를 출력
+        root.render(<Myapp/>);
+        //중요한 점 : 만든 함수명이나 클래스의 경우 맨 앞글자는 무조건 대문자
+    </script>
+</body>
+
+</html>
