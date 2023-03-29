@@ -30,8 +30,12 @@
                     <p>{text}</p>
                     <h3>className으로 접근해서 스타일 변경</h3>
                     <p className="react-style">{text}</p>
+                    <h3>className으로 접근하되 중괄호 써서 접근</h3>
+                    <p className={"react-"+"style"}>{text}</p>
                     <h3>style 객체로 접근하기</h3>
                     <p style={style}>{text}</p>
+                    <h3>style 자체를 넣기</h3>
+                    <p style={{color:'aqua',backgroundColor:'black'}}>{text}</p>
                 </div>
             )
         }
