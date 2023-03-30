@@ -6,18 +6,30 @@ class Login extends Component {
     //클래스에서 props 값을 가져올 때는 this.props를 통해 들고온다.
     //this.props는 Component에서 상속받아온 속성
     //this.props={login:true name:"홍길동"}
-    //구조화할당 : 배열이나 객체와 같이 값이 여러개인 자료형을 안에 있는 요소를 꺼내에 각각의 변수에 따로 저장하는 방ㅎ식
+    //비구조화할당[구조 분해] : 배열이나 객체와 같이 값이 여러개인 자료형을 안에 있는 요소를 꺼내에 각각의 변수에 따로 저장하는 방ㅎ식
     let prop = this.props;
+    //prop.login 와 같이 속성에 접근할 수 있지만 일일히 넣기에는 번거롭다
+    //아래와 같이 자료형 중 필요한것만 꺼낼 수 있다. 객체의 속성이름과 동일하게 적어서 할당가능
+    //속성 이름을 동일하게 작성하지 않으면 값을 들고오지 못함
     let { login, name } = this.props;
+    let children = this.props.children;
     console.log(prop);
     console.log(login);
+    console.log(name);
+    console.log(prop.children);
     //let login = true;
-    return login ? (
-      <LoginText /> //이런식으로 밑에 다른 컴포넌트를 만들어서 해당 컴포넌트 안에 넣을 수 있다.
-    ) : (
+    return (
       <div>
-        <h1>로그인이 필요합니다</h1>
-        <p>React입니다</p>
+        <h1>{name}</h1>
+        <p>{children}</p>
+        {login ? (
+          <LoginText /> //이런식으로 밑에 다른 컴포넌트를 만들어서 해당 컴포넌트 안에 넣을 수 있다.
+        ) : (
+          <div>
+            <h1>로그인이 필요합니다</h1>
+            <p>React입니다</p>
+          </div>
+        )}
       </div>
     );
   }

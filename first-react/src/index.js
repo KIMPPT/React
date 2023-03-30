@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  /*StrictMode는 엄밀한 검사라서 console.log의 경우 똑같은 작업을 한번 더 해서
+  2번 나오게 해줌*/
   <React.StrictMode>
     <App />
   </React.StrictMode>
