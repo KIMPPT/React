@@ -43,7 +43,15 @@ class StateComp extends Component{
                 <button
                 onClick={
                     ()=>{
-                        this.setState({number:number-1})
+                        //하나의 이벤트에서 setState를 여러번 부를 경우 원하는 값이 나오지 않을 수 있다.
+                        //setState를 2번 했지만 실제로는 1번만 실행된다
+                        this.setState({number:number-1});
+                        this.setState({number:number-1});
+                        //이전에 있던 state 값을 prevStste로 들고와서 수정
+                        //값이 바뀐 후에 들고오기에 동기적으로 값이 수정
+                        //()=>()의 형태로 사용하는 이유 : return 으로 객체전달
+                        //(prevState)=>({state속성:값})
+                        this.setState((prevState)=>({number:prevState.number-1}))
                     }
                 }>
                     count-1
