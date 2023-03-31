@@ -8,7 +8,10 @@ export class EventComp extends Component {
             name:"홍길동",
             address:"부산",
             toggle:true,
-            color:""
+            color:"",
+            input:"",
+            inputNickname:"",
+            inputBook:""
         }
         //메소드에 .bind로 묶어서 this 전달
         //아래 this.메소드명 은 작성한 메소드
@@ -46,9 +49,14 @@ export class EventComp extends Component {
         //onMouseLeave이벤트가 발생했을 때는 color:"" 
         {e.type==="mouseenter"?this.setState({color:"red"}):
         this.setState({color:""})
-    }
-
-    }
+    }}
+        //onChange 공용메소드
+        onInputChange=(e)=>{
+            //inputNickname을 그대로 사용하면 inputNickname만 값이 들어옴
+            //e.target.name:name속성값을 가져와서 사용
+            //변수값을 사용할려면 []에 담아서 사용해야함
+            this.setState({[e.target.name]: e.target.value});
+          }
         //화살표함수를 가지는 메소드
         arrowPrint=()=>{console.log("이벤트 출력");
         console.log(this.state.name)}
@@ -143,6 +151,33 @@ export class EventComp extends Component {
       onClick={this.changeName}>
         {name}
       </button>
+      {/*form-input 태그의 값 사용하기 */}
+      <h3>input 태그에서 값을 가져올 state를 onChange를 사용해서 수정</h3>
+      <p>{this.state.input}</p>
+      <input type="text" name="" id="" 
+      onChange={(e)=>{
+        console.log(e.target.value) //이벤트 개체의 타겟의 값을 불러옴
+        this.setState({input:e.target.value})
+        //setState는 비동기로 움직이므로 바로 state에 접근해서 값을 출력하면 이전 값이 나온다.
+        console.log("input",this.state.input)
+    }
+}
+      />
+      {/*change 공용함수 만들기 : 사용하지 않아도 무관 */}
+      <h3>input 2개에서 값 받아오기</h3>
+      <p>inputNickname의 값 : {this.state.inputNickname}</p>
+
+      <input 
+      name='inputNickname' //state의 속성이름과 동일
+      type="text"
+      onChange={this.onInputChange}
+      />
+            <p>inputBook의 값 : {this.state.inputBook}</p>
+    <input 
+        name='inputBook'
+      type="text"
+      onChange={this.onInputChange}
+      />
       </div>
     )
   }
