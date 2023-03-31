@@ -8,6 +8,7 @@ import TextComponent from "./components/TextComponent";
 
 import OtherComp from "./components/OtherComp";
 import StateComp from "./components/StateComp";
+import EventComp from "./components/EventComp";
 /* React에서 오류가 뜨는 이유
 1. 존재하지 않는 컴포넌트 출력(컴포넌트 생성 이후에 이름은 가능하면 바꾸지 말것)
 > 이름을 바꾼 후에는 바꾼 그 이름으로 모든 컴포넌츠 수정
@@ -33,6 +34,7 @@ function App() {
       {/*state를 가진 컴포넌트는 다시 사용해도 별개의 값으로 들어간다 */}
       <StateComp/>
       <StateComp/>
+      <EventComp/>
     </div>
   );
 }
