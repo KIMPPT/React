@@ -1,3 +1,4 @@
 https://wookgu.tistory.com/31
 VSCode에서 React+ESLint+Prettier 설정하는 방법
 VS Code ES7+ React/Redux/React-Native/JS snippets 확장설치
+확장설치를 했다면 빈 jsx 파일에 rce를 입력하면 기본양식이 나온다.
