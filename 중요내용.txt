@@ -1,0 +1,3 @@
+https://wookgu.tistory.com/31
+VSCode에서 React+ESLint+Prettier 설정하는 방법
+VS Code ES7+ React/Redux/React-Native/JS snippets 확장설치

@@ -111,7 +111,8 @@ export class EventComp extends Component {
       changeColor메서드 제작, 메서드에서 this.state.color 값을 "red" 로 수정
       */}
       <p
-      onMouseEnter={this.changeColor} style={{color:this.state.color}}> p 태그에 마우스를 올리면 글자를 빨간색으로 바꾸기</p>
+      onMouseEnter={this.changeColor} style={{color:this.state.color}}
+      > p 태그에 마우스를 올리면 글자를 빨간색으로 바꾸기</p>
       </div>
     )
   }
