@@ -32,6 +32,7 @@ export class MemoComp extends Component {
   };
   //시간값을 편하게 출력하기 위한 메소드
   //return 에서 memo.time.getHours로 값이 받아와졌기 때문에 매개변수를 지정해야함
+  //가능하면 this.setState 사용하지 않음
   printClock = (time) => {
     let hour = time.getHours();
     let minute = time.getMinutes();
