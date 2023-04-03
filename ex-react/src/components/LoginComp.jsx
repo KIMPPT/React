@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loginon from './login.css'
+import loginon from './Login.css'
 export class LoginComp extends Component {
   //state 생성
   constructor(props) {
@@ -36,6 +36,7 @@ export class LoginComp extends Component {
         {/*
         
         */}
+        
         <div style={{ display: login ? 'none' : 'block' }}>
         {/* <div className={login?"loginon":""}> 를 입력하면 바로 위의 식과 동일하다. import를 만들어야 적용이 되며 위의 import의 색이 연한 색이 되어도 신경 쓰지 않아도 된다*/}
           <h3>이름을 입력하세요</h3>
