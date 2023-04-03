@@ -35,11 +35,11 @@ function App() {
       <TextComponent name="성춘향">환영합니다</TextComponent>
       <OtherComp />
       {/*state를 가진 컴포넌트는 다시 사용해도 별개의 값으로 들어간다 */}
-      <StateComp/>
-      <StateComp/>
-      <EventComp/>
-      <RefDomEvent/>
-      <MapComp/>
+      <StateComp />
+      <StateComp />
+      <EventComp />
+      <RefDomEvent />
+      <MapComp />
     </div>
   );
 }

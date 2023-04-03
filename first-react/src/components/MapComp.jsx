@@ -14,6 +14,9 @@ export class MapComp extends Component {
       ],
       inputText: "", //onChange를 이용해서 input의 value값 가져옴
     };
+    //수정될때마다 값이 하면에 표현되지 않고,
+    //값이 저장하고 싶을 때
+    this.id = 5;
   }
   addstudent = () => {
     //React는 state값이 바뀔 때 마다 화면 업데이트
@@ -31,18 +34,28 @@ export class MapComp extends Component {
     // id값은 중복되지 않게 시용.1씩 증가
     // 1씩 증가 >배열의 길이값이 1씩 증가하기 때문에 이 점을 응용하기
     let newStudents = this.state.students.concat({
-      id: this.state.students.length + 1,
+      id: this.id,
       name: this.state.inputText,
     });
     this.setState({ students: newStudents });
-    this.setState({ students: newStudents });
+    // 속성값에 직접 접근해서 1 증가
+    this.id++;
     //input태그의 value={} state값으로 연결하면
     //setState를 통해서 값을 수정 할 수 있다
     //접근하는 state의 이름이 다르면 따로 적어도 괜찮다
     //this.setState({students:newStudents, inputText:""})
     this.setState({ inputText: "" });
   };
-
+  //전달해준 값을 사용하기 위해서 매개변수로 받아오기
+  deleteStudent = (student) => {
+    //1.  배열에서 값을 제거하는 방법
+    //  1)pop,splice 등등 > 원래값에 제거하지 않음
+    //  2)값을 제거하고 새로운 배열 생성 : filter
+    //filter(걸러냄) : (value)=>return 참 일 때
+    //value값을 return 배열에 넣어줌
+    let newStudents = this.state.students.filter((s) => s.id !== student.id);
+    this.setState({ students: newStudents });
+  };
   render() {
     //배열의 map 함수 확인
     let array = [1, 2, 3, 4];
@@ -51,7 +64,6 @@ export class MapComp extends Component {
     //map에 함수를 넣어서 그 함수의 return 값으로 새로운 배열 작성
     //>return 값에 태그나 컴포넌트를 넣어서 반복 가능
     let arrayMap = array.map((value, index) => <p key={index}>{value * 2}</p>);
-    let studentsLength = this.state.students.length;
     return (
       <div>
         <hr />
@@ -102,7 +114,13 @@ export class MapComp extends Component {
             {this.state.students.map((student) => (
               <tr key={student.id}>
                 <td>{student.id}</td>
-                <td>{student.name}</td>
+                <td
+                  //이름을 눌렸을 때 이름을 가진 객체 삭제
+                  //student의 값을 전달하기 위해서 화살표 함수로 감싸기
+                  onClick={() => this.deleteStudent(student)}
+                >
+                  {student.name}
+                </td>
               </tr>
             ))}
             {

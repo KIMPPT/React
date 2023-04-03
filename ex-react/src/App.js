@@ -2,6 +2,7 @@ import PropComp from "./components/PropComp";
 import CountComp from "./components/CountComp";
 import CountPropComp from "./components/CountPropComp";
 import LoginComp from "./components/LoginComp";
+import MemoComp from "./components/MemoComp";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       h1 태그에 name 출력 + login 값이 true 일 때 화면에 보여줌
       */}
       <LoginComp/>
+      <MemoComp/>
     </div>
   );
 }
