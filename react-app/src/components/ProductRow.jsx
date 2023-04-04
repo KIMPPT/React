@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export class ProductRow extends Component {
   render() {
     return (
-      <div>ProductRow</div>
-    )
+      <tr>
+        <td>Football</td>
+        <td>$49.99</td>
+      </tr>
+    );
   }
 }
 
-export default ProductRow
+export default ProductRow;
