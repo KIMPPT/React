@@ -28,17 +28,15 @@ export class ProductTable extends Component {
               //products의 카테고리 중 'sporting goods'를 가진 배열을 만드는 방법
               //filter를 이용해 내용을 작성하고 <productrow/>를 통해서 내용 출력하기
             }
-            <ProductCategoryRow />
             <ProductRow name={products[0].name} price={products[0].price} />
-            <hr />
             {products.map((product) => (
               <ProductRow name={product.name} price={product.price} />
             ))}
-            <hr />
+            <ProductCategoryRow category={"Sporting Goods"}/>
             {sportingProducts.map((product) => (
               <ProductRow name={product.name} price={product.price} />
             ))}
-            <hr />
+            <ProductCategoryRow category={"Electronics"}/>
             {elecProducts.map((product) => (
               <ProductRow name={product.name} price={product.price} />
             ))}
