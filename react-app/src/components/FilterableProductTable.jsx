@@ -20,7 +20,7 @@ export class FilterableProductTable extends Component {
   };
   render() {
     console.log(productData);
-    //isOnlyStock이 true일 때 productData가 stock이 true인것만 배열로 만들기
+    //isOnlyStock이 true일 때 productData가 stock이 true인것만 배열로 만들기-새로운 배열
     let checkedProduct = productData.filter((product) => product.stocked);
     return (
       <div>
@@ -31,7 +31,7 @@ export class FilterableProductTable extends Component {
           toggleStock={this.toggleStock}
         />
         {/*가져온 데이터 값을 보여줄 공간 */}
-        <ProductTable
+        <ProductTable //product에 체크박스에 체크가 되어 있다면 true값만 있던 새로운 배열을 내보니고, 아닐 경우 기존 배열을 내보낸다.
           products={this.state.isOnlyStock ? checkedProduct : productData}
         />
       </div>

@@ -8,7 +8,9 @@ export class ProductCategoryRow extends Component {
     let {category}=this.props;
     return (
       <tr>
-        <th colSpan={2}>{category}</th>
+        <th colSpan={2}
+        //열 병합
+        >{category}</th>
       </tr>
     );
   }
