@@ -37,9 +37,12 @@ export class MemoComp extends Component {
     let hour = time.getHours();
     let minute = time.getMinutes();
     let second = time.getSeconds();
+    //return은 되도록이면 글자나 숫자 같은 문자열로 출력하는걸 추천
     return `${hour}시${minute}분${second}초`
   };
   render() {
+    //항상 똑같은 값이나 this.state 같은 값들을 쉽게 쓰고 싶을 때
+    //render는 값을 시작하면 항상 초기호가 된다
     return (
       <div>
         <input

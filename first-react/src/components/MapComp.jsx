@@ -37,6 +37,7 @@ export class MapComp extends Component {
       id: this.id,
       name: this.state.inputText,
     });
+    //students 에 위에서 만든 newStudents 추가
     this.setState({ students: newStudents });
     // 속성값에 직접 접근해서 1 증가
     this.id++;
@@ -52,7 +53,8 @@ export class MapComp extends Component {
     //  1)pop,splice 등등 > 원래값에 제거하지 않음
     //  2)값을 제거하고 새로운 배열 생성 : filter
     //filter(걸러냄) : (value)=>return 참 일 때
-    //value값을 return 배열에 넣어줌
+    //value값을 return 배열에 넣어줌.
+    //즉, 지울려는 id와 기존 id 가 일치하는 것만 제외하고 재생성한다고 생각하면 된다.
     let newStudents = this.state.students.filter((s) => s.id !== student.id);
     this.setState({ students: newStudents });
   };
