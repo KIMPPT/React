@@ -1,6 +1,7 @@
 //16.8 이후로 함수형에서 state 사용 가능
 import { useState } from "react";
-
+//CSS 파일 가져오기
+import "./arrowState.css";
 //화면의 업데이트에 상관없이 사용하는 변수
 //현재 컴포넌트에서 전역변수로 쓸 변수
 let id2 = 4;
@@ -19,9 +20,9 @@ let ArrowState = () => {
   let [array, setArray] = useState([1, 2, 3, 4]);
   //map을 이용하여 id 값과 name을 화면에 출력
   let [students, setStudent] = useState([
-    { id: 1, name: "홍길동" },
-    { id: 2, name: "성춘향" },
-    { id: 3, name: "흥부" },
+    { id: 1, name: "홍길동", checked: true },
+    { id: 2, name: "성춘향", checked: false },
+    { id: 3, name: "흥부", checked: true },
   ]);
   //message에는 useState("")의 "" 값이 들어간다.
 
@@ -82,10 +83,42 @@ let ArrowState = () => {
       {students.map((student, index) => (
         <li
           key={index}
-          //클릭했을 때 배열 삭제 > 클래스형 컴포넌트 내용 참고
-          onClick={() => deleteStudent(student.id)}
+          //해당 student의 checkbox의 값에 따라 스타일 변경
+          className={student.checked ? "on" : ""}
         >
+          <input
+            type="checkbox"
+            checked={student.checked}
+            readOnly
+            onClick={() => {
+              //체크박스를 클릭하면, 클릭한 객체의 chekced 값이 바뀜
+              //map을 이용하여 작성
+              let newStudents = students.map((s) => {
+                //s를 통해서 각각의 객체값 확인
+                //1) 클릭한 체크박스의 id 값 과 모든 s의 id와 비교
+                //2) id값이 같지 않다면 원래 객체
+                //3) id 값이 같다면 checked 값을 !을 이용하여 수정한 객체
+                if (student.id !== s.id) {
+                  return s;
+                } else {
+                  //원래 객체에서 checked 값만 수정하기 위해서
+                  //s 안에 있는 속성을 ...(스프레드 연산자)를 이용해서 추가
+                  //수정할  속성인 chekced를 작성해서 수정
+                  return { ...s, checked: !s.checked };
+                }
+              });
+              setStudent(newStudents);
+              //map() : 배열안의 요소의 값을 return을 통해 새로운 배열로 만듬
+              //클릭한 객체를 찾았다면 > 그 객체의 checked 값을 수정해서 return으로 넣어줌
+            }}
+          />
           {student.id},{student.name}
+          <button
+            //클릭했을 때 배열 삭제 > 클래스형 컴포넌트 내용 참고
+            onClick={() => deleteStudent(student.id)}
+          >
+            X
+          </button>
         </li>
       ))}
     </div>
