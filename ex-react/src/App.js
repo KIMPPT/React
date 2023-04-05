@@ -25,7 +25,7 @@ function App() {
       */}
       <LoginComp/>
       <MemoComp/>
-      <ExampleComp/>
+      <ExampleComp color="blue"/>
     </div>
   );
 }
