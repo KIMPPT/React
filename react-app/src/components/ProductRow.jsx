@@ -6,6 +6,7 @@ export class ProductRow extends Component {
         super(props);
     }
   render() {
+    //해당 컴포넌트의 상위인 ProductTable에서 불러낸다
     let {name,price}=this.props
     return (
       <tr>

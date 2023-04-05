@@ -13,6 +13,9 @@ import EventComp from "./components/EventComp";
 import RefDomEvent from "./components/RefDomEvent";
 import MapComp from "./components/MapComp";
 import LifeCycle from "./components/LifeCycle";
+import ArrowComp from "./components/ArrowComp";
+import ArrowTest from "./components/ArrowTest";
+import ArrowState from "./components/ArrowState";
 /* React에서 오류가 뜨는 이유
 1. 존재하지 않는 컴포넌트 출력(컴포넌트 생성 이후에 이름은 가능하면 바꾸지 말것)
 > 이름을 바꾼 후에는 바꾼 그 이름으로 모든 컴포넌츠 수정
@@ -42,7 +45,21 @@ function App() {
       <RefDomEvent />
       <MapComp />
 
-      <LifeCycle/>
+      <LifeCycle />
+      <ArrowComp text="abc" />
+      <ArrowComp>children으로 전달</ArrowComp>
+
+      {/*함수형 컴포넌트 실습
+      아래 컴포넌트를 함수형으로 만들고 출력하기
+       name="green":h3 태그 출력
+       check={true} : check 값이 true 일 때 name 출력
+       children : p 태그로 출력
+       */}
+      <ArrowTest name="green" check={true}>
+        환영합니다
+      </ArrowTest>
+      {/*함수형 컴포넌트의 state 사용 */}
+      <ArrowState/>
     </div>
   );
 }

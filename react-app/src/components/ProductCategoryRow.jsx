@@ -5,7 +5,7 @@ export class ProductCategoryRow extends Component {
         super(props);
     }
   render() {
-    let {category}=this.props;
+    let {category}=this.props; //상위 컴포넌트에서 category={""}라는 값을 만들어 놓았기 때문에 들고 옴
     return (
       <tr>
         <th colSpan={2}
