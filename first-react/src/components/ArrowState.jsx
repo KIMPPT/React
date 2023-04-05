@@ -26,9 +26,6 @@ let ArrowState = () => {
   ]);
   //message에는 useState("")의 "" 값이 들어간다.
 
-  //학생 이름을 받아올 공간
-  let [input, setInput] = useState("");
-
   //화면의 업데이트에 상관없이 사용하는 변수
   //언제 가지고 오느냐
   //클래스형에서는 render()안에 값이 계속 초기화
@@ -38,6 +35,9 @@ let ArrowState = () => {
   let inputChange = (e) => {
     setInput(e.target.value);
   };
+
+  //학생 이름을 받아올 공간
+  let [input, setInput] = useState("");
 
   // 밑에서 작성한 추가하는 메서드를 위로 옮겨서 작성
   let addStudent = () => {
@@ -56,8 +56,8 @@ let ArrowState = () => {
   let deleteStudent = (id) => {
     let newStudent = students.filter((s) => s.id !== id);
     //여기서 주의할 부분 : filter의 students는 useState로 만드는 배열이고 그리고 비교할 부분의 s 는 () 안의 s여야 한다.
-    // 즉, 이름을 같게 하면 서로 꼬이기 때문에 다르게 해야 한다.
-    setStudent(newStudent);
+    // 즉, 이름을 같게 하면 서로 꼬이기 때문에 다르게 해야 한다. 출력부분에 id값 자체를 받아 올 거기 때문에 id로 바로 씀
+    setStudent(newStudent); //위 배열을 기존 배열에서 수정함
   };
   return (
     <div>
@@ -83,13 +83,13 @@ let ArrowState = () => {
       {students.map((student, index) => (
         <li
           key={index}
-          //해당 student의 checkbox의 값에 따라 스타일 변경
+          //해당 student의 checkbox의 값에 따라 스타일 변경[class이름을 추가하거나 제거]
           className={student.checked ? "on" : ""}
         >
           <input
             type="checkbox"
-            checked={student.checked}
-            readOnly
+            checked={student.checked} //checked 값을 이미 입력된 배열에서 확인 한 후 대입
+            readOnly //콘솔창에 에러 뜨는것에 대비
             onClick={() => {
               //체크박스를 클릭하면, 클릭한 객체의 chekced 값이 바뀜
               //map을 이용하여 작성
@@ -107,6 +107,7 @@ let ArrowState = () => {
                   return { ...s, checked: !s.checked };
                 }
               });
+              //위에 만든 새 배열인 newStudents를 student에 넣음
               setStudent(newStudents);
               //map() : 배열안의 요소의 값을 return을 통해 새로운 배열로 만듬
               //클릭한 객체를 찾았다면 > 그 객체의 checked 값을 수정해서 return으로 넣어줌
