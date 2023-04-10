@@ -87,6 +87,10 @@ export default function EffectHook2() {
       <hr />
       {/*공공데이터로 값을 가져 올 때, 그 값을 바로 들어오지 않는다. */}
       <p>공공데이터로 가져온 값 : {loading ? menuList[0].MENU_NM : ""}</p>
+      <p>공공데이터로 가져온 값 : {loading ? menuList[58].MENU_ID : ""}</p>
+      <p>공공데이터로 가져온 값 : {loading ? menuList[546].RSTR_NM : ""}</p>
+      <p>공공데이터로 가져온 값 : {loading ? menuList[170].RSTR_NM : ""}</p>
+
     </div>
   );
 }
