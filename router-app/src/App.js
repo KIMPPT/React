@@ -6,6 +6,8 @@ import { Routes,Route } from 'react-router-dom';
 import Home from './page/Home';
 import About from './page/About';
 import Story from './page/Story';
+import Story2 from './page/Story2';
+import Error from './page/Error';
 function App() {
   return (
     //Routes를 이용하여 컴포넌트와 주소를 연결하는 Route를 정리
@@ -18,7 +20,20 @@ function App() {
       <Route path='/' element={<Home />}/>
       <Route path='/about' element={<About/>}/>
       {/*<Stroy/> 컴포넌트 생성, 주소는 /st */}
-      <Route path='/st' element={<Story/>}/>
+      {/* URL 파라미터를 이용한 값 전달
+        path의 주소에 값이 들어갈 공간에 이름 작성
+        값은 브러우저에 주소창에 입력했을 때 값이 들어감
+      */}
+      <Route path='/st/:value' element={<Story/>}/>
+      {/*story를 story2로 수정하여 사용 
+        URL 파라미터 이름은 name으로 작성
+        URL 파라미터로 전달할 값은 green
+        useParams 이용해서 화면에 출력
+      */}
+      <Route path='/story2/:name' element={<Story2/>}/>
+      {/*
+      path='*'를 하면 지정된 주소 외에는 전부 element로 연결된 컴포넌트가 출력된다 */}
+      <Route path='*' element={<Error/>}/>
     </Routes>
   );
 }
