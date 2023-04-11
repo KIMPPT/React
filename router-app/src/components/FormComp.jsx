@@ -11,6 +11,7 @@ export default function FormComp() {
     <div>
       <form
         onSubmit={(e) => {
+          //새로고침 되는 것을 막아줌
           e.preventDefault();
           //라우터를 이용하여 이동. Link 컴포넌트 사용 불가
           //navigate를 통해서 주소이동 가능
