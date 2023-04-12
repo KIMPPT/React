@@ -11,6 +11,7 @@ export default function Story2() {
   let params=useParams();
   let {name}=useParams();//객체,구조화할당해야 들고 올 수 있다
   // params는 객체값을 들고온 것이고 value는 params 의 value에 해당하는 값만 들고온 것이다.
+
   return (
     <div>
       <h1>{params.name} + Story2</h1>

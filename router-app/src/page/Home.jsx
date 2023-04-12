@@ -15,6 +15,10 @@ export default function Home() {
       <Link to={`/st/${fruit}`}>st/apple 로 이동</Link>
       <Link to={`/st/${fruits[3]}`}> Story</Link>
 
+      <Link to={`/articles`}>Articles</Link>
+      <hr />
+      
+      {/* 쿼리스트링값을 About에 전달하는 컴포넌트*/}
       <FormComp />
       <hr />
       {
