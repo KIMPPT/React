@@ -64,8 +64,8 @@ function App() {
             NavigatePage.jsx 생성 > 버튼을 클릭하면 이동하면 하면서 값 전달
             NaviStatePage.jsx > 전달받은 값 출력
           */}
-  <Route path="/navigate" element={<NavigatePage/>}></Route>
-  <Route path="/navigate/state" element={<NaviStatePage/>}></Route>
+          <Route path="/navigate" element={<NavigatePage />}></Route>
+          <Route path="/navigate/state" element={<NaviStatePage />}></Route>
 
           {/*
       path='*'를 하면 지정된 주소 외에는 전부 element로 연결된 컴포넌트가 출력된다 */}
