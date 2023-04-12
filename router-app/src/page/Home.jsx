@@ -12,6 +12,7 @@ export default function Home() {
       {/*a 태그 대신 컴포넌트의 주소로 이동 */}
       <Link to="/about">About</Link>
       {/*to 에 {}인 JS 형식도 가능 */}
+      <Link to={`/st/${fruit}`}>st/apple 로 이동</Link>
       <Link to={`/st/${fruits[3]}`}> Story</Link>
 
       <FormComp />
