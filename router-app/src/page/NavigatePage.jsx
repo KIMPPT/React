@@ -12,6 +12,7 @@ export default function NavigatePage() {
           //값을 전달하기 위해 state: 사용
           //state에 전달할 내용이 많다면 객체형태 사용
           navigate("/navigate/state", { state: 10 });
+          //-1을 넣으면 이전 페이지로 이동한다
         }}
       >
         숫자 값 10 전달

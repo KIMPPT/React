@@ -8,9 +8,11 @@ export default function Articles() {
     <div>
       <h3>Article 목록</h3>
       {/*중첩 라우터를 사용한 Route에 들어갔을 때 연결된 페이지 컴포넌트가 보인다. */}
-      <Outlet/>
-      {list.map((id,i) => (
-        <Link to={`/articles/${id}`} key={i}>{id}번째 게시글 ||</Link>
+      <Outlet />
+      {list.map((id, i) => (
+        <Link to={`/articles/${id}`} key={i}>
+          {id}번째 게시글 ||
+        </Link>
       ))}
     </div>
   );

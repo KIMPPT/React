@@ -17,7 +17,7 @@ export default function Home() {
 
       <Link to={`/articles`}>Articles</Link>
       <hr />
-      
+
       {/* 쿼리스트링값을 About에 전달하는 컴포넌트*/}
       <FormComp />
       <hr />
