@@ -19,6 +19,8 @@ class ThemedButton extends React.Component {
   //contextType에 import해온 ThemeContext를 가져와서 쓸 수 있다.
   //value 로 번달한 문자열이 들어가 있다=light
   static contextType = Themecontext;
+  //메서드에서도 context에 넣어 둔 함수를 호출 할 수 있다.
+  //단점은 한 클래스에서 하나의 context만 호출가능하다.
   render() {
     //호출 할 때는 this.context를 통해서 호출
     return <button>클래스형에서 Context:{this.context}</button>;
@@ -34,6 +36,7 @@ function MyButton() {
 
   //객체로 전달된 값은 객체로 사용
   let user = useContext(Objectcontext);
+  //위의 클래스형과 비교하면 함수형은 2개 이상의 context도 들고 올 수 있다.
   return (
     <div>
       <h3>{context}</h3>

@@ -14,7 +14,7 @@ function App() {
           <Toolbar />
         </Objectcontext.Provider>
       </ThemeContext.Provider>
-      <ThemeContext.Provider value="blue">
+      <ThemeContext.Provider value="blue" name="이름">
         <Contextbox />
       </ThemeContext.Provider>
       <DataProvider>

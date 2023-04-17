@@ -11,6 +11,7 @@ export default function Contextbox() {
   );
 }
 function ContextText() {
-  let text = useContext(ThemeContext);
+  let {text,name} = useContext(ThemeContext);
+  console.log(name);
   return <p>{text}</p>;
 }

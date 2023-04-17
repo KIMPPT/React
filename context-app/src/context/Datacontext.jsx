@@ -6,7 +6,7 @@ import { useState } from "react";
 //DataContext 작성
 let DataContext = React.createContext(null);
 
-//App.js에서 값 전달할 때 DataContext.Provider를 이용하여 갑 ㅅ전달
+//App.js에서 값 전달할 때 DataContext.Provider를 이용하여 값 전달
 
 //이 공간에서 값을 추가한 Provider작성 후 내보냄
 //provider는 컴포넌트 형태
@@ -23,8 +23,9 @@ let DataProvider = ({ children }) => {
     action: { setLogin, setName },
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
+  //App.js에 DataContext.Provider 구간을 대신하기 위해 return으로 미리 작성
 };
-//감싸서 값을 전달하기 위한 컴포넌트 - 해당 과정을 전달한다
+//감싸서 값을 전달하기 위한 컴포넌트
 export { DataProvider };
-//값을 가져오기 위해 접근하는 값 - 해당 값을 전달한다
+//값을 가져오기 위해 접근하는 값
 export default DataContext;
