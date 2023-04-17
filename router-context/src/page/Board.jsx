@@ -5,8 +5,11 @@ import data from '../data/dummy.json'
 import DataContext from '../context/DataContext';
 // id로 구분하기위해 board에 data의 내용이 필요함
 export default function Board() {
-  let value=useContext(DataContext);
-  console.log(value);
+  let {state}=useContext(DataContext);
+  //바로 boardlist를 못들고 온다. 
+  //boardlist.jsx에서 value.state.boardlist처럼 2번 들어가야 한다.
+  let {boardlist}=state;
+  console.log(state);
 
   // useNavigate를 사용하면 함수를 이용해서 화면이동가능
   const navigate = useNavigate();
@@ -17,7 +20,7 @@ export default function Board() {
   // find로 가져온값은 배열 안에 있는 하나의 값
   // find로 값을 찾지 못할 경우 undefined 출력
   // undefined의 값에 속성을 찾으려고하면 >> 오류!
-  const boardData = value.state.boardlist.find((d)=>(d.id == id))
+  const boardData = boardlist.find((d)=>(d.id == id))
   //data 대신 value.state.boardlist로 접근
 
   // useEffect를 사용해서 boardData값이 undefind면 

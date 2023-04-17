@@ -16,9 +16,16 @@ let DataProvider = ({ children }) => {
       id: 2,
       title: "두번째 게시물입니다",
       content: "내용을 작성하였습니다",
-      date: "2023-04-14",
+      date: "2023-04-15",
       writer: "green",
     },
+    {
+        id: 3,
+        title: "세번째 게시물입니다",
+        content: "내용을 작성하였습니다",
+        date: "2023-04-17",
+        writer: "blue",
+      },
   ]);
   //value에 담을 데이터 정리
   let value = {
