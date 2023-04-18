@@ -27,10 +27,13 @@ let DataProvider = ({ children }) => {
         writer: "blue",
       },
   ]);
+
+  //id 값을 전달하기 위해 useState()로 작성
+  let [id,setId]=useState(4);
   //value에 담을 데이터 정리
   let value = {
-    state: { boardlist }, //접근할 수 있는 값
-    action: { setBoardlist }, //수정하기 위한 함수
+    state: { boardlist,id }, //접근할 수 있는 값
+    action: { setBoardlist,setId }, //수정하기 위한 함수
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
