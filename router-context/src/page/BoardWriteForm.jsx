@@ -25,7 +25,9 @@ export default function BoardWriteForm() {
       title: title,
       content: content,
       date: `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`,
-      writer: "익명",
+      //DataContext에 들어가있는 user의 writer값
+      //로그인을 했다면 작성한 writer, 로그인을 안했다면 "익명"
+      writer: state.user.writer,
     };
     //1-1. id값을 1 추가
     action.setId(state.id+1);

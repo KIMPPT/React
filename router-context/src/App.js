@@ -8,6 +8,7 @@ import BoardWriteForm from "./page/BoardWriteForm";
 import { DataProvider } from "./context/DataContext";
 import DataContext from "./context/DataContext";
 import BoardModifyForm from "./page/BoardModifyForm";
+import LoginForm from "./page/LoginForm";
 function App() {
   return (
     <div className="App">
@@ -18,7 +19,9 @@ function App() {
             <Route path="/boardlist" element={<BoardList />} />
             <Route path="/boardlist/:id" element={<Board />} />
             <Route path="/boardwriteform" element={<BoardWriteForm />} />
-            <Route path="/board-modify" element={<BoardModifyForm/>}/>
+            <Route path="/board-modify" element={<BoardModifyForm />} />
+
+            <Route path="/loginform" element={<LoginForm />} />
           </Route>
         </Routes>
       </DataProvider>

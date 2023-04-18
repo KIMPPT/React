@@ -13,7 +13,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 //1),2) 모두 수정해서 쓰는 부분은 동일
 export default function BoardModifyForm() {
   let navigate = useNavigate();
+
   let location = useLocation();
+  //console.log(location) 로 해당글의 객체값들을 받아온다.
+  
   //수정버튼을 누른 Board에서 받아온 객체
   //{id,title,content,date,writer}
   let boardData = location.state;
