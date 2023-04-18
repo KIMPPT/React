@@ -13,7 +13,7 @@ export default function BoardWriteForm() {
   // >>todolist에서 값을 추가 할 때, 이전의 배열을 들고와서 뒤에 concat을 통해
   //새로운 배열을 만들어 추가
   // 위와 같이 데이터를 쓰는 이유 : 서버의 DB를 사용하지 않고 JS로 값을 저장하고 있기 때문
-
+    let date=new Date();
   //DataContext를 통해서 공용데이터 값, 메서드 들고오기
   let value = useContext(DataContext);
   let { state, action } = value;
@@ -24,7 +24,7 @@ export default function BoardWriteForm() {
       id: state.id,
       title: title,
       content: content,
-      date: "2023-04-18",
+      date: `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`,
       writer: "익명",
     };
     //1-1. id값을 1 추가
