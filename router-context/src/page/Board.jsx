@@ -5,7 +5,7 @@ import data from '../data/dummy.json'
 import DataContext from '../context/DataContext';
 // id로 구분하기위해 board에 data의 내용이 필요함
 export default function Board() {
-  let {state}=useContext(DataContext);
+  let {state,action}=useContext(DataContext);
   //바로 boardlist를 못들고 온다. 
   //boardlist.jsx에서 value.state.boardlist처럼 2번 들어가야 한다.
   let {boardlist}=state;
@@ -31,7 +31,17 @@ export default function Board() {
         navigate('/boardlist');
     }
   },[])
+  let deleteBoard=()=>{
+    //1. 현재 id를 들고온다>useParam을 통해 가져온 id를 들고온다
 
+    //2. id와 동일한 객체를 제외한 새로운 배열을 만든다
+    //filter를 통해 배열 생성
+    let newBoardlist=boardlist.filter((board)=>(board.id!==Number(id)))
+    //3. 새로운 배열을 set메서드를 통해 넣어준다
+    action.setBoardlist(newBoardlist);
+    //삭제한 후에는 상위인 boardlist로 이동해야함
+    navigate('/boardlist');
+  }
   return (
     <div>
         {   // 화면이 먼저 화면에 렌더되고, useEffect 실행
@@ -49,7 +59,8 @@ export default function Board() {
                 </div>
             )
         }
-
+    <button
+    onClick={deleteBoard}>삭제</button>
     </div>
   )
 }
