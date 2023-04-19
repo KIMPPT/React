@@ -30,7 +30,7 @@ export default function Board() {
     if (boardData == undefined) {
       navigate("/boardlist");
     }
-  }, [])
+  }, []);
   let deleteBoard = () => {
     //1. 현재 id를 들고온다>useParam을 통해 가져온 id를 들고온다
 
@@ -80,9 +80,16 @@ export default function Board() {
           </button>
         </div>
       )}
-          <hr />
-          
-      <CommentComp />  
+      <hr />
+      {/*
+      <CommentComp writer={"green"} date={"2023-04-19"} text={"코멘트"}/>  
+      */}
+      {/*
+            값을 넘길 형태가 객체로 주어져있으면 객체로 넘길 수 있다.
+            */}
+      {state.commentlist.map((comment) => (
+        <CommentComp comment={comment} />
+      ))}
     </div>
   );
 }
