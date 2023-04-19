@@ -21,6 +21,12 @@ export default function Board() {
   // find로 값을 찾지 못할 경우 undefined 출력
   // undefined의 값에 속성을 찾으려고하면 >> 오류!
   const boardData = boardlist.find((d) => d.id == id);
+
+  //state의 commentlist에서 boardId와 param의 id 값이 같은 새로운 배열 작성
+  let boardCommentlist=state.commentlist.filter(
+    (comment)=>(comment.boardId==id)
+  )
+
   //data 대신 value.state.boardlist로 접근
 
   // useEffect를 사용해서 boardData값이 undefind면
@@ -85,9 +91,11 @@ export default function Board() {
       <CommentComp writer={"green"} date={"2023-04-19"} text={"코멘트"}/>  
       */}
       {/*
-            값을 넘길 형태가 객체로 주어져있으면 객체로 넘길 수 있다.
-            */}
-      {state.commentlist.map((comment) => (
+      값을 넘길 형태가 객체로 주어져있으면 객체로 넘길 수 있다.
+      state의 commentlist를 그대로 쓰게 되면 전체가 나옴
+      동일한 boardId를 가진 commentlist
+      */}
+      {boardCommentlist.map((comment) => (
         <CommentComp comment={comment} />
       ))}
     </div>
