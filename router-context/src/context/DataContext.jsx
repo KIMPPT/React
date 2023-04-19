@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 let DataContext = React.createContext("");
-
+//컴포넌트 밖에서 생성한 값의 경우 자동으로 값이 바뀌지 않기에 안에서 메소드를 작성
+let cid=3;
 let DataProvider = ({ children }) => {
   //데이터를 저장 및 수정하기 위해 useState 사용
   //DataContext에 들어갈 value값의 특징
@@ -42,7 +43,7 @@ let DataProvider = ({ children }) => {
   let [commentlist,setCommentlist]=useState(
     [
       {
-        id:1,
+        cid:1,
         boardId:1,
         text:"첫번째 게시글의 코멘트입니다",
         date:"2023-04-19",
@@ -50,7 +51,7 @@ let DataProvider = ({ children }) => {
       },
       
       {
-        id:2,
+        cid:2,
         boardId:3,
         text:"세번째 게시글의 코멘트입니다",
         date:"2023-04-19",
@@ -58,10 +59,16 @@ let DataProvider = ({ children }) => {
       }
     ]
   );
+
+    //cid를 사용하기 위한 메서드 (호출하면 1씩 증가)
+    let cidCount=()=>{
+      cid++;
+    }
+
   //value에 담을 데이터 정리
   let value = {
-    state: { boardlist, id, user,commentlist }, //접근할 수 있는 값
-    action: { setBoardlist, setId, setUser,setCommentlist }, //수정하기 위한 함수
+    state: { boardlist, id, user,commentlist ,cid}, //접근할 수 있는 값
+    action: { setBoardlist, setId, setUser,setCommentlist,cidCount }, //수정하기 위한 함수
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CommentComp from "../components/CommentComp";
 import data from "../data/dummy.json";
 import DataContext from "../context/DataContext";
 // id로 구분하기위해 board에 data의 내용이 필요함
+
 export default function Board() {
   let { state, action } = useContext(DataContext);
   //바로 boardlist를 못들고 온다.
@@ -11,6 +12,38 @@ export default function Board() {
   let { boardlist } = state;
   //console.log(state);
 
+  //코멘트의 작성할 글을 저장하기 위한 공간
+  let [text, setText] = useState("");
+  //addComment 메서드 작성
+  let addComment = () => {
+    //1. 추가할 코엔트 객체 생성
+    let newComment = {
+      cid: state.cid,
+      boardId: boardData.id,
+      text: text,
+      date: "2023-04-19",
+      writer: state.user.writer,
+    };
+    //1-1. cid 값 증가
+    action.cidCount();
+    //2. 코멘트가 추가된 새로운 배열
+    let newCommentlist = state.commentlist.concat(newComment);
+    //3. 새로운 배열을 set메서드를 통해서 값 할당
+    action.setCommentlist(newCommentlist);
+  }
+
+  //코멘트를 삭제 하기 위한 메서드
+  let deleteComment=(cid)=>{
+    //1. 삭제/수정을 할 때는 값의 id(유일한 값)을 통해 확인
+    //boardCommentlist의 각 객채에 id가 있음
+    //>map으로 객체를 하나씩 출력 할 때 id 값을 가져옴
+
+    //2. filter를 통해서 id값을 제외한 새로운 배열 생성
+    //state.commentlist(전체 배열)를 통해서 새로운 배열 생성
+    let newCommentlist=state.commentlist.filter((comment)=>(comment.cid!==cid));
+    //3. 그 배열을 set메소드를 통해 값 할당
+    action.setCommentlist(newCommentlist);
+  }
   // useNavigate를 사용하면 함수를 이용해서 화면이동가능
   const navigate = useNavigate();
 
@@ -23,9 +56,9 @@ export default function Board() {
   const boardData = boardlist.find((d) => d.id == id);
 
   //state의 commentlist에서 boardId와 param의 id 값이 같은 새로운 배열 작성
-  let boardCommentlist=state.commentlist.filter(
-    (comment)=>(comment.boardId==id)
-  )
+  let boardCommentlist = state.commentlist.filter(
+    (comment) => comment.boardId == id
+  );
 
   //data 대신 value.state.boardlist로 접근
 
@@ -87,6 +120,15 @@ export default function Board() {
         </div>
       )}
       <hr />
+      {/*코멘트를 작성할 공간 */}
+      <input
+        type="text"
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+      <button onClick={addComment}>댓글 추가</button>
+      <hr />
       {/*
       <CommentComp writer={"green"} date={"2023-04-19"} text={"코멘트"}/>  
       */}
@@ -96,7 +138,8 @@ export default function Board() {
       동일한 boardId를 가진 commentlist
       */}
       {boardCommentlist.map((comment) => (
-        <CommentComp comment={comment} />
+        <CommentComp key={comment.cid} comment={comment} 
+        deleteComment={deleteComment}/>
       ))}
     </div>
   );
