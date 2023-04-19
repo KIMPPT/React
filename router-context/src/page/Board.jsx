@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import CommentComp from "../components/CommentComp";
 import data from "../data/dummy.json";
 import DataContext from "../context/DataContext";
 // id로 구분하기위해 board에 data의 내용이 필요함
@@ -30,7 +30,7 @@ export default function Board() {
     if (boardData == undefined) {
       navigate("/boardlist");
     }
-  }, []);
+  }, [])
   let deleteBoard = () => {
     //1. 현재 id를 들고온다>useParam을 통해 가져온 id를 들고온다
 
@@ -80,6 +80,9 @@ export default function Board() {
           </button>
         </div>
       )}
+          <hr />
+          
+      <CommentComp />  
     </div>
   );
 }

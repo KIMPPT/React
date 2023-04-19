@@ -36,10 +36,32 @@ let DataProvider = ({ children }) => {
 
   //user 값을 사용하기 위해 useState() 작성
   let [user, setUser] = useState({ writer: "익명", login: false });
+
+  //commentlist 값 저장
+  //id,text,date,writer
+  let [commentlist,setCommentlist]=useState(
+    [
+      {
+        id:1,
+        boardId:1,
+        text:"첫번째 게시글의 코멘트입니다",
+        date:"2023-04-19",
+        writer:"green",
+      },
+      
+      {
+        id:2,
+        boardId:3,
+        text:"세번째 게시글의 코멘트입니다",
+        date:"2023-04-19",
+        writer:"green",
+      }
+    ]
+  );
   //value에 담을 데이터 정리
   let value = {
-    state: { boardlist, id, user }, //접근할 수 있는 값
-    action: { setBoardlist, setId, setUser }, //수정하기 위한 함수
+    state: { boardlist, id, user,commentlist }, //접근할 수 있는 값
+    action: { setBoardlist, setId, setUser,setCommentlist }, //수정하기 위한 함수
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
