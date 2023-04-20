@@ -20,6 +20,8 @@ export default function BoardList() {
                 //dataList 대신 DataContext에 넣은 내용을 씀
                 value.state.boardlist.map((data)=>(
                     <li key={data.id}>
+                        <span>🤍</span>
+                        <span>🧡</span>
                         <Link to={`/boardlist/${data.id}`}>
                             {data.title}
                         </Link>

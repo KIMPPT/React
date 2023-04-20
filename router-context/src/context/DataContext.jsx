@@ -59,7 +59,17 @@ let DataProvider = ({ children }) => {
       }
     ]
   );
-
+    // 좋아요 배열을 사용하기 위한 useState
+    //좋아요 표시를 목록에서 먼저 표시
+    //게시글 안에서 표시(나중에)
+    let [likelist,setLikelist]=useState(
+      [
+        {
+          boardId:1,
+          title:"첫번째 게시물입니다"
+        }
+      ]
+    )
     //cid를 사용하기 위한 메서드 (호출하면 1씩 증가)
     let cidCount=()=>{
       cid++;
