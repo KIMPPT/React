@@ -77,8 +77,8 @@ let DataProvider = ({ children }) => {
 
   //value에 담을 데이터 정리
   let value = {
-    state: { boardlist, id, user,commentlist ,cid}, //접근할 수 있는 값
-    action: { setBoardlist, setId, setUser,setCommentlist,cidCount }, //수정하기 위한 함수
+    state: { boardlist, id, user,commentlist ,cid,likelist}, //접근할 수 있는 값
+    action: { setBoardlist, setId, setUser,setCommentlist,cidCount,setLikelist }, //수정하기 위한 함수
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
