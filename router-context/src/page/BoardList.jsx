@@ -60,13 +60,18 @@ export default function BoardList() {
                   likeClick(data);
                 }}
               >
-                {value.state.likelist.find(
+                {
+                //삼항연산자와 && 연산자 사용(참일 때 화면 출력)
+                //로그인이 되어 있으면 화면에 출력(&&)-비교/논리 연산자 X
+                value.state.user.login &&
+                //find()의 값을 통해 하트 색 결정
+                (value.state.likelist.find(
                   (like) => like.boardId === data.id
                 ) ? (
                   <span>❤</span>
                 ) : (
                   <span>🤍</span>
-                )}
+                ))}
               </span>
               <Link to={`/boardlist/${data.id}`}>{data.title}</Link>
             </li>

@@ -9,6 +9,7 @@ import { DataProvider } from "./context/DataContext";
 import DataContext from "./context/DataContext";
 import BoardModifyForm from "./page/BoardModifyForm";
 import LoginForm from "./page/LoginForm";
+import ImagePage from "./page/ImagePage";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
             <Route path="/board-modify" element={<BoardModifyForm />} />
 
             <Route path="/loginform" element={<LoginForm />} />
+            <Route path="/image" element={<ImagePage/>}/>
           </Route>
         </Routes>
       </DataProvider>
