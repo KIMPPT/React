@@ -1,9 +1,19 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState, useRef } from "react";
 import DataContext from "../context/DataContext";
 import { Link } from "react-router-dom";
 export default function MyPage() {
   let { state, action } = useContext(DataContext);
+
+  let [show, setShow] = useState(false);
+
+  //DOM에 접근하기 위해 리엑트에서 id 대신 사용하는 useRef
+  //id 대신에 useRef를 사용하는 이유
+  //1. id값으로 접근하면 return의 화면이 다 호출된 뒤에 접근
+  // >useEffect를 이용해서 마운트 후에 id접근
+  // useRef를 사용하면 바로 작성을 해도 마운트 후에 값을 가져옴
+  // React는 가상 DOM 이기 때문에 render 이후에 return의 태그들이 화면에 출력
+  let prePic = useRef();
 
   //좋아요 삭제
   //1. 삭제할 id를 찾는다
@@ -16,6 +26,8 @@ export default function MyPage() {
 
   //프로필 사진 바꾸는 메서드 >>모달창 사용하는 방식
   let changeProfile = () => {
+    setShow(true);
+
     //1. 사진을 선택하는 창 출력(파일 입력)
     //2. 그 사진을 선택하면 프뢸 사진이 바뀜(set-메소드를 이용하여 user.profile 값 수정)
   };
@@ -24,16 +36,38 @@ export default function MyPage() {
   let onLoadFile = (e) => {
     //이벤트 객체의 파일 배열 중 0번째 인덱스 값 사용
     console.dir(e.target);
+    //log로는 <input type="file"> 만 보여주기 때문에 dir로 찾는다
     console.log(e.target.files[0]);
+
     //URL.createObjectURL()를 이용하여 파일의 값 변형해서 사용
     //나중에 DB에서도 저장해서 사용 가능
 
+    /* URL.createObjectURL()에서 오류 발생
+    typeError:잘못된 값이 들어갔을 때 생기는 오류
+    >>확인해보니 값을 선택하지 않았을 때 undefined가 들어감
+    해결방법 생각하기
+    1. undefined 값이 들어왔을 때 다른 값으로 수정해서 넣기
+    *2. undefined가 들어왔을 때 메서드(함수) 중지
+    
+    2. 메서드를 중지하는 방법 : return을 실행하면 메서드가 종료
+    */
+    if(e.target.files[0]===undefined){
+        //return을 사용하여 메서드 종료
+        return -1;
+    }
     //user.profile에 넣어서 사용
     action.setUser({
       ...state.user,
       profile: URL.createObjectURL(e.target.files[0]),
     });
+    //useRef로 들고 온 미리보기 div를 들고 와서
+    //style의 backgroundImage 바꿔서 출력
+    console.log(prePic);
+    prePic.current.style.backgroundSize='cover';
+    prePic.current.style.backgroundImage=`url(${URL.createObjectURL(e.target.files[0])})`;
   };
+
+
   return (
     <div>
       <h3>MyPage</h3>
@@ -47,7 +81,11 @@ export default function MyPage() {
         {/*onChnage를 이용하여 들고오는 사진이 바뀔 때 마다 실행 
         실행하면서 input의 값을 가져오기 위함
         input type="text"에서 값을 들고온 것과 유사*/}
-        <input type="file" onChange={onLoadFile} />
+        <input
+          type="file"
+          onChange={onLoadFile}
+          //파일 선택 이라는 버튼이 생김
+        />
       </div>
       <h5>{state.user.writer}님의 페이지</h5>
       <hr />
@@ -68,7 +106,62 @@ export default function MyPage() {
         ))}
       </ul>
 
-      {/*모달 창을 사용하기 위한 공간 */}
+      {/*모달 창을 사용하기 위한 공간 
+      모달창의 형태 : 전체화면에 출력되는 창
+      디자인은 먼저 넣저누는 것 : 전체화면에 출력되기 때문*/}
+      <div
+        className="modalbackground"
+        style={{
+          width: "100%",
+          height: "100vh",
+          backgroundColor: "rgba(255,0,0,0.5)",
+          position: "fixed",
+          top: "0",
+          //모달 창의 화면을 display의 값에 따라 수정
+          //>>useState로 작성하여서 화면에 출력
+          //show를 이용하여 T/F
+          display: show ? "block" : "none",
+        }}
+      >
+        <div
+          className="modal"
+          style={{
+            width: "80%",
+            height: "300px",
+            backgroundColor: "white",
+            borderRadius: "10px",
+            margin: "auto",
+            marginTop: "40px",
+            padding: "30px 10px",
+          }}
+        >
+          {/*미리보기 이미지 > imf 태그를 통해 가져와도 무방
+            div의 backgroundImage를 통해 가져오기 
+            
+            *이미지값을 넣어주기 위해 div의 ref를 지정하여
+            DOM으로 들고와서 지정
+
+            이미지값을 useState저장해서 값이 있을 때 
+            backgroundImage에 출력(modal 참고)
+            */}
+          <div
+            ref={prePic}
+            style={{
+              width: "150px",
+              height: "150px",
+              backgroundColor: "lightgray",
+            }}
+          ></div>
+          <input type="file" onChange={onLoadFile} />
+          <button
+            onClick={() => {
+              setShow(false);
+            }}
+          >
+            닫기
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
