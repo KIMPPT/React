@@ -17,7 +17,7 @@ export default function NavHeader() {
       {/*state의 user의 login이 false 일 때 Link
       true이면 : user의 writer */}
       {state.user.login ? (
-        <span>{state.user.writer}</span>
+        <Link to='mypage'>{state.user.writer}님의 페이지</Link>
       ) : (
         <Link to="/loginform">LOGIN</Link>
       )}
