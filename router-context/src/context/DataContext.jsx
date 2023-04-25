@@ -37,7 +37,7 @@ let DataProvider = ({ children }) => {
 
   //user 값을 사용하기 위해 useState() 작성
   //마이페이지 작성을 위해 임의로 값을 넣음 : 나중에 수정
-  let [user, setUser] = useState({ writer: "green", login: true });
+  let [user, setUser] = useState({ writer: "green", login: true ,profile:'/image/logo192.png'});
 
   //commentlist 값 저장
   //id,text,date,writer
