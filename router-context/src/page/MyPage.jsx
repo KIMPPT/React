@@ -51,9 +51,9 @@ export default function MyPage() {
     
     2. 메서드를 중지하는 방법 : return을 실행하면 메서드가 종료
     */
-    if(e.target.files[0]===undefined){
-        //return을 사용하여 메서드 종료
-        return -1;
+    if (e.target.files[0] === undefined) {
+      //return을 사용하여 메서드 종료
+      return -1;
     }
     //user.profile에 넣어서 사용
     action.setUser({
@@ -63,10 +63,11 @@ export default function MyPage() {
     //useRef로 들고 온 미리보기 div를 들고 와서
     //style의 backgroundImage 바꿔서 출력
     console.log(prePic);
-    prePic.current.style.backgroundSize='cover';
-    prePic.current.style.backgroundImage=`url(${URL.createObjectURL(e.target.files[0])})`;
+    prePic.current.style.backgroundSize = "cover";
+    prePic.current.style.backgroundImage = `url(${URL.createObjectURL(
+      e.target.files[0]
+    )})`;
   };
-
 
   return (
     <div>
@@ -93,7 +94,7 @@ export default function MyPage() {
       <ul>
         <li>게시글 제목</li>
         {state.likelist.map((like) => (
-          <li key={like.boardid}>
+          <li key={like.boardId}>
             <Link to={`/boardlist/${like.boardId}`}>{like.title}</Link>
             <button
               onClick={() => {
